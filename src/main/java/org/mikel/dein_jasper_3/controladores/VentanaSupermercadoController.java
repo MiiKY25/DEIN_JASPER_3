@@ -19,139 +19,32 @@ public class VentanaSupermercadoController {
 
     @FXML
     void accionProductos(ActionEvent event) {
-        ConexionBBDD db;
-        try {
-            // Crear una nueva conexión a la base de datos
-            db = new ConexionBBDD();
-
-            // Cargar el archivo Jasper del informe
-            InputStream reportStream = db.getClass().getResourceAsStream("/jasper/Productos.jasper");
-
-            // Verificar si el archivo fue encontrado
-            if (reportStream == null) {
-                System.out.println("Archivo NO encontrado");
-                return;
-            }
-
-            // Cargar el informe Jasper
-            JasperReport report = (JasperReport) JRLoader.loadObject(reportStream);
-
-            // Parámetros del informe
-            Map<String, Object> parameters = new HashMap<>();
-
-            // Añadir la ruta de las imágenes
-            String imagePath = db.getClass().getResource("/imagenes/").toString(); // Ruta de la carpeta de imágenes
-            parameters.put("IMAGE_PATH", imagePath);
-
-            // Llenar el informe con datos
-            JasperPrint jprint = JasperFillManager.fillReport(report, parameters, db.getConnection());
-
-            // Mostrar el informe
-            JasperViewer viewer = new JasperViewer(jprint, false);
-            viewer.setVisible(true);
-
-        } catch (SQLException e) {
-            System.err.println("Error de conexión a la base de datos:");
-            e.printStackTrace();
-        } catch (JRException e) {
-            System.err.println("Error al procesar el informe Jasper:");
-            e.printStackTrace();
-        }
+        generarInforme("Productos.jasper");
     }
 
     @FXML
     void accionSecciones(ActionEvent event) {
-        ConexionBBDD db;
-        try {
-            // Crear una nueva conexión a la base de datos
-            db = new ConexionBBDD();
-
-            // Cargar el archivo Jasper del informe
-            InputStream reportStream = db.getClass().getResourceAsStream("/jasper/Secciones.jasper");
-
-            // Verificar si el archivo fue encontrado
-            if (reportStream == null) {
-                System.out.println("Archivo NO encontrado");
-                return;
-            }
-
-            // Cargar el informe Jasper
-            JasperReport report = (JasperReport) JRLoader.loadObject(reportStream);
-
-            // Parámetros del informe
-            Map<String, Object> parameters = new HashMap<>();
-
-            // Añadir la ruta de las imágenes
-            String imagePath = db.getClass().getResource("/imagenes/").toString(); // Ruta de la carpeta de imágenes
-            parameters.put("IMAGE_PATH", imagePath);
-
-            // Llenar el informe con datos
-            JasperPrint jprint = JasperFillManager.fillReport(report, parameters, db.getConnection());
-
-            // Mostrar el informe
-            JasperViewer viewer = new JasperViewer(jprint, false);
-            viewer.setVisible(true);
-
-        } catch (SQLException e) {
-            System.err.println("Error de conexión a la base de datos:");
-            e.printStackTrace();
-        } catch (JRException e) {
-            System.err.println("Error al procesar el informe Jasper:");
-            e.printStackTrace();
-        }
+        generarInforme("Secciones.jasper");
     }
 
     @FXML
     void accionTabla(ActionEvent event) {
-        ConexionBBDD db;
-        try {
-            // Crear una nueva conexión a la base de datos
-            db = new ConexionBBDD();
-
-            // Cargar el archivo Jasper del informe
-            InputStream reportStream = db.getClass().getResourceAsStream("/jasper/Tabla.jasper");
-
-            // Verificar si el archivo fue encontrado
-            if (reportStream == null) {
-                System.out.println("Archivo NO encontrado");
-                return;
-            }
-
-            // Cargar el informe Jasper
-            JasperReport report = (JasperReport) JRLoader.loadObject(reportStream);
-
-            // Parámetros del informe
-            Map<String, Object> parameters = new HashMap<>();
-
-            // Añadir la ruta de las imágenes
-            String imagePath = db.getClass().getResource("/imagenes/").toString(); // Ruta de la carpeta de imágenes
-            parameters.put("IMAGE_PATH", imagePath);
-
-            // Llenar el informe con datos
-            JasperPrint jprint = JasperFillManager.fillReport(report, parameters, db.getConnection());
-
-            // Mostrar el informe
-            JasperViewer viewer = new JasperViewer(jprint, false);
-            viewer.setVisible(true);
-
-        } catch (SQLException e) {
-            System.err.println("Error de conexión a la base de datos:");
-            e.printStackTrace();
-        } catch (JRException e) {
-            System.err.println("Error al procesar el informe Jasper:");
-            e.printStackTrace();
-        }
+        generarInforme("Tabla.jasper");
     }
 
     @FXML
     void accionGraficos(ActionEvent event) {
+        generarInforme("Graficos.jasper");
+    }
+
+    private void generarInforme(String archivoJasper) {
         ConexionBBDD db;
         try {
             // Crear una nueva conexión a la base de datos
             db = new ConexionBBDD();
 
             // Cargar el archivo Jasper del informe
-            InputStream reportStream = db.getClass().getResourceAsStream("/jasper/Graficos.jasper");
+            InputStream reportStream = db.getClass().getResourceAsStream("/jasper/" + archivoJasper);
 
             // Verificar si el archivo fue encontrado
             if (reportStream == null) {
