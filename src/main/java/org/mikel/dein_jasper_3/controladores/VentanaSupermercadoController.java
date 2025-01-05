@@ -15,28 +15,62 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Controlador para la ventana del supermercado.
+ * Este controlador maneja los eventos relacionados con la generación de informes en formato Jasper.
+ */
 public class VentanaSupermercadoController {
 
+    /**
+     * Metodo encargado de manejar el evento de generación del informe de productos.
+     * Este metodo llama a {@link #generarInforme(String)} pasando el archivo Jasper correspondiente.
+     *
+     * @param event El evento generado por la acción del usuario.
+     */
     @FXML
     void accionProductos(ActionEvent event) {
         generarInforme("Productos.jasper");
     }
 
+    /**
+     * Metodo encargado de manejar el evento de generación del informe de secciones.
+     * Este metodo llama a {@link #generarInforme(String)} pasando el archivo Jasper correspondiente.
+     *
+     * @param event El evento generado por la acción del usuario.
+     */
     @FXML
     void accionSecciones(ActionEvent event) {
         generarInforme("Secciones.jasper");
     }
 
+    /**
+     * Metodo encargado de manejar el evento de generación del informe de la tabla.
+     * Este metodo llama a {@link #generarInforme(String)} pasando el archivo Jasper correspondiente.
+     *
+     * @param event El evento generado por la acción del usuario.
+     */
     @FXML
     void accionTabla(ActionEvent event) {
         generarInforme("Tabla.jasper");
     }
 
+    /**
+     * Metodo encargado de manejar el evento de generación del informe de gráficos.
+     * Este metodo llama a {@link #generarInforme(String)} pasando el archivo Jasper correspondiente.
+     *
+     * @param event El evento generado por la acción del usuario.
+     */
     @FXML
     void accionGraficos(ActionEvent event) {
         generarInforme("Graficos.jasper");
     }
 
+    /**
+     * Metodo que genera un informe a partir de un archivo Jasper.
+     * El informe se llena con los datos obtenidos de la base de datos y se muestra al usuario.
+     *
+     * @param archivoJasper El nombre del archivo Jasper que se utilizará para generar el informe.
+     */
     private void generarInforme(String archivoJasper) {
         ConexionBBDD db;
         try {
