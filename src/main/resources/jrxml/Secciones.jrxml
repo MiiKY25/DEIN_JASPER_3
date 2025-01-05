@@ -1,0 +1,113 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="Secciones" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="08b905f4-9bf9-4cbb-bd2b-cc46e7eba540">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexion MariaDB"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="IMAGE_PATH" class="java.lang.String"/>
+	<query language="sql"><![CDATA[SELECT 
+    s.nombre AS seccion,
+    p.nombre AS producto,
+    p.precio AS precio,
+    p.stock AS unidad
+FROM 
+    supermercado.producto p
+INNER JOIN 
+    supermercado.seccion s ON p.seccion = s.codigo
+ORDER BY 
+    s.nombre, p.nombre
+]]></query>
+	<field name="seccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="seccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seccion"/>
+	</field>
+	<field name="producto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="producto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="producto"/>
+	</field>
+	<field name="precio" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.name" value="precio"/>
+		<property name="com.jaspersoft.studio.field.label" value="precio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="producto"/>
+	</field>
+	<field name="unidad" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="stock"/>
+		<property name="com.jaspersoft.studio.field.label" value="unidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="producto"/>
+	</field>
+	<group name="GrupoSeccion">
+		<expression><![CDATA[$F{seccion}]]></expression>
+		<groupHeader>
+			<band height="70">
+				<element kind="staticText" uuid="8e0f5b39-d514-444e-af09-f03e0a6c8d24" x="130" y="30" width="100" height="30" backcolor="#99FFCC" bold="true" hTextAlign="Center" vTextAlign="Middle">
+					<text><![CDATA[PRODUCTO]]></text>
+				</element>
+				<element kind="staticText" uuid="287c1e8b-6350-47f8-b515-b450ab3edea3" x="330" y="30" width="100" height="30" backcolor="#99FFCC" bold="true" hTextAlign="Center" vTextAlign="Middle">
+					<text><![CDATA[PRECIO]]></text>
+				</element>
+				<element kind="staticText" uuid="fb15b4e1-5a93-42c4-9563-849e589a5c6e" x="230" y="30" width="100" height="30" backcolor="#99FFCC" bold="true" hTextAlign="Center" vTextAlign="Middle">
+					<text><![CDATA[STOCK]]></text>
+				</element>
+				<element kind="staticText" uuid="cbc8a4e5-a046-4ea4-9430-9d8370585503" x="430" y="30" width="100" height="30" backcolor="#99FFCC" bold="true" hTextAlign="Center" vTextAlign="Middle">
+					<text><![CDATA[PRECIO IVA 21%]]></text>
+				</element>
+				<element kind="rectangle" uuid="4e83cb83-f0b4-4736-9dd8-142dfed81c4d" x="0" y="20" width="109" height="50" backcolor="#99FFCC">
+					<pen lineWidth="0.0"/>
+				</element>
+				<element kind="textField" uuid="d1b6b08f-b6b1-4176-ba20-4c0806ac7495" x="10" y="30" width="90" height="30" fontSize="12.0" vTextAlign="Middle">
+					<expression><![CDATA[$F{seccion}]]></expression>
+				</element>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch">
+		<element kind="rectangle" uuid="6865d129-3a8a-4b25-9cf6-ac9ea03cc27e" x="-20" y="0" width="595" height="79" backcolor="#99FFCC">
+			<pen lineWidth="0.0"/>
+		</element>
+		<element kind="image" uuid="2a5c7898-9ca5-403a-8711-40776be8dfb9" x="10" y="0" width="80" height="79">
+			<expression><![CDATA[$P{IMAGE_PATH} + "logo.jpg"]]></expression>
+		</element>
+		<element kind="staticText" uuid="5f4b1b26-4e41-4d20-b218-3afdaf0d52ab" x="260" y="10" width="295" height="40" fontSize="15.0" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[SUPERMERCADO FRESH]]></text>
+		</element>
+		<element kind="staticText" uuid="d599008e-32e4-4bed-989e-d0b34b5bcb13" x="260" y="40" width="295" height="27" fontSize="11.0" hTextAlign="Right" vTextAlign="Middle">
+			<text><![CDATA[C/ ALAVA N 33]]></text>
+		</element>
+	</title>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<element kind="textField" uuid="1900756e-49fc-4693-a55b-8b4bee725dc2" x="130" y="0" width="100" height="30">
+				<expression><![CDATA[$F{producto}]]></expression>
+			</element>
+			<element kind="textField" uuid="0fab0e62-a618-4bac-8802-032384179717" x="330" y="0" width="100" height="30" hTextAlign="Right">
+				<expression><![CDATA[$F{precio}]]></expression>
+			</element>
+			<element kind="textField" uuid="921cc762-08d4-40c2-a17f-efc0346a066f" x="230" y="0" width="100" height="30" hTextAlign="Right">
+				<expression><![CDATA[$F{unidad}]]></expression>
+			</element>
+			<element kind="textField" uuid="45af841b-2ee0-4bc2-ab0e-55a3a7a0e2ea" x="430" y="0" width="100" height="30" hTextAlign="Right">
+				<expression><![CDATA[new java.text.DecimalFormat("#,##0.00").format($F{precio} * 1.21)
+]]></expression>
+			</element>
+		</band>
+	</detail>
+	<pageFooter height="35" splitType="Stretch">
+		<element kind="rectangle" uuid="9bcd26f3-4c01-412c-9c55-713441479c1e" x="-20" y="-1" width="595" height="31" backcolor="#99FFCC">
+			<pen lineWidth="0.0"/>
+		</element>
+		<element kind="textField" uuid="deab9dd9-cb0a-48a4-ad9f-3bbaab95f35d" x="380" y="4" width="100" height="19" hTextAlign="Right">
+			<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="1131f32b-ae99-435f-9190-39007d783c23" x="480" y="4" width="70" height="19" evaluationTime="Report" hTextAlign="Left">
+			<expression><![CDATA["/ " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="f78aec9a-a638-45a7-9d6a-8e441ff6687d" x="0" y="4" width="190" height="20">
+			<expression><![CDATA[new java.text.SimpleDateFormat("EEEE dd MMMM yyyy", new java.util.Locale("es", "ES")).format(new java.util.Date())]]></expression>
+		</element>
+	</pageFooter>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>
